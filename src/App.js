@@ -1,24 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+import Form from "./Form";
+import TodoList from "./TodoList";
 
 function App() {
+  const [tasks, setTasks] = useState([]);
+  const [count, setCount] = useState(1);
+  const [inputText, setInputText] = useState("");
+  const [editId, setEditId] = useState(0);
+  const [btnText, setBtnText] = useState("Add");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="container">
+        <h2>TODO LIST</h2>
+        <h3>Add Item</h3>
+
+        <Form
+          btnText={btnText}
+          setBtnText={setBtnText}
+          editId={editId}
+          setEditId={setEditId}
+          inputText={inputText}
+          setInputText={setInputText}
+        />
+
+        <h3>Todo</h3>
+        <TodoList
+          btnText={btnText}
+          setBtnText={setBtnText}
+          editId={editId}
+          setEditId={setEditId}
+          inputText={inputText}
+          setInputText={setInputText}
+          status={false}
+        />
+
+        <h3>Completed</h3>
+        <TodoList
+          btnText={btnText}
+          setBtnText={setBtnText}
+          editId={editId}
+          setEditId={setEditId}
+          inputText={inputText}
+          setInputText={setInputText}
+          status={true}
+        />
+      </div>
+    </>
   );
 }
 
